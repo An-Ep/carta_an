@@ -263,55 +263,62 @@ function leerCarta() {
   carta.classList.remove("activa");
   setTimeout(() => carta.classList.add("activa"), 100);
 
+  // Añadimos los saltos de línea con <br> para que se respeten en la visualización
 
-const textoCarta = 
-"Hola mi niña de ojitos lindos 💖" +
-"¡Felices 1 añito juntos! 🥰" +
-"Amor mío, estoy tan feliz de tenerte y de todo el amor que sentimos." +
-"Cada detalle de ti me encanta demasiado, y nuestra conexión es tan especial." +
-"Aún recuerdo la primera vez que te vi llegar, toda hermosa para la banquita," +
-"y tomarnos de la manita… qué lindo momento 💕." +
-"Hemos compartido tantas cosas hermosas juntos," +
-"y en cada una de ellas te amo con toda el alma." +
-"Estoy tan feliz de que seamos nosotros, una pareja tan linda." +
-"A pesar de los malos ratos, arreglamos cada detalle y mejoramos día a día." +
-"Cada momento a tu lado es un recuerdo precioso," +
-"y quiero seguir construyendo muchos más juntos mi vida 🌸." +
-"Te amo muchísimo ❤️";
+    const textoCarta = 
+"Hola mi niña de ojitos lindos 💖<br><br>" +
 
-function escribirTexto(id, texto) {
-  let i = 0;
-  const velocidad = 40;
-  const elemento = document.getElementById(id);
-  elemento.innerHTML = "";
-  function escribir() {
-    if (i < texto.length) {
-      elemento.innerHTML += texto.charAt(i);
-      i++;
-      setTimeout(escribir, velocidad);
-    }
-  }
-  escribir();
-}
+"Hoy cumplimos 1 añito juntos… y de verdad no tienes idea de lo feliz que me haces 🥰<br><br>" +
+
+"Amor mío, tenerte en mi vida ha sido lo más bonito que me ha pasado. " +
+"Todo de ti me encanta, tu forma de ser, tu sonrisa, tu mirada… todo tú 💕<br><br>" +
+
+"Aún recuerdo perfectamente la primera vez que te vi llegar, " +
+"toda hermosa para la banquita… y ese momento en el que tomamos nuestras manos por primera vez. " +
+"Desde ahí supe que había algo especial entre nosotros ✨<br><br>" +
+
+"Hemos vivido tantas cosas lindas juntos, momentos que se quedan guardados en mi corazón para siempre. " +
+"Y en cada uno de ellos te he amado con toda mi alma ❤️<br><br>" +
+
+"Me hace tan feliz saber que somos nosotros… " +
+"una pareja tan bonita, tan real. " +
+"Aunque a veces tengamos momentos difíciles, siempre encontramos la forma de arreglar todo " +
+"y seguir creciendo juntos, día con día 🤍<br><br>" +
+
+"Cada instante a tu lado es un recuerdo hermoso, " +
+"y quiero seguir construyendo muchos más contigo, mi vida 🌸<br><br>" +
+
+"Gracias por existir, por elegirme, por amarme como lo haces…<br><br>" +
+
+"Te amo muchísimo, hoy, mañana y siempre ❤️";
 
   escribirTexto("textoCarta", textoCarta);
-
-
-  
 }
+
+
+
 function escribirTexto(id, texto) {
   let i = 0;
   const velocidad = 40;
   const elemento = document.getElementById(id);
   elemento.innerHTML = "";
+
   function escribir() {
     if (i < texto.length) {
-      // Esto permite que los <br> se rendericen como saltos de línea
-      elemento.innerHTML += texto.charAt(i);
-      i++;
+
+      // Detecta si viene un <br>
+      if (texto.substring(i, i+4) === "<br>") {
+        elemento.innerHTML += "<br>";
+        i += 4; // saltamos los 4 caracteres
+      } else {
+        elemento.innerHTML += texto.charAt(i);
+        i++;
+      }
+
       setTimeout(escribir, velocidad);
     }
   }
+
   escribir();
 }
 // CORAZONES
